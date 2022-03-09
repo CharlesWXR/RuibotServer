@@ -1,0 +1,25 @@
+server:
+  port: 8088
+  servlet:
+    context-path: /api
+
+spring:
+  datasource:
+    username: root
+    password: P@ssW0&d
+    url: jdbc:mysql://localhost:3306/ruibot?serverTimezone=UTC
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 1024MB
+      enabled: true
+
+logging:
+  config: logback.xml
+
+prediction:
+  python-path: C:\Users\pc\Anaconda3\python.exe
+  code-path: F:\PycharmProjects\bert_server\predict2.py
