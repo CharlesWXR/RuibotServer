@@ -23,3 +23,4 @@ logging:
 prediction:
   python-path: C:\Users\pc\Anaconda3\python.exe
   code-path: F:\PycharmProjects\bert_server\predict2.py
+  # code-path: F:\PycharmProjects\law_test\bert_server\predict2.py

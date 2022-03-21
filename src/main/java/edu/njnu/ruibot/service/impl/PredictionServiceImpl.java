@@ -41,8 +41,14 @@ public class PredictionServiceImpl implements PredictionService {
 
 			proc.waitFor();
 			BufferedReader reader = new BufferedReader(new InputStreamReader(proc.getInputStream(), "GBK"));
-			String res = reader.readLine();
+			StringBuilder sb = new StringBuilder();
+			String temp = null;
+			while ((temp = reader.readLine()) != null) {
+				sb.append(temp + "\n");
+			}
 			reader.close();
+
+			String res = sb.toString().trim();
 
 			if (res != null) {
 				ResponseContent responseContent = new ResponseContent();
