@@ -31,24 +31,37 @@ public class PredictionServiceImpl implements PredictionService {
 	@Override
 	public String prediction(String description, long userID) {
 		try {
-			String[] args = new String[] {
+			StringBuilder sb = new StringBuilder();
+
+			String[] argsPrediction = new String[] {
 					predictionConfig.pythonPath,
-					predictionConfig.codePath,
+					predictionConfig.predictionPath,
 					description
 			};
+			Process proc = Runtime.getRuntime().exec(argsPrediction);
 
-			Process proc = Runtime.getRuntime().exec(args);
-
-			proc.waitFor();
 			BufferedReader reader = new BufferedReader(new InputStreamReader(proc.getInputStream(), "GBK"));
-			StringBuilder sb = new StringBuilder();
 			String temp = null;
 			while ((temp = reader.readLine()) != null) {
 				sb.append(temp + "\n");
 			}
+			proc.waitFor();
 			reader.close();
 
-			String res = sb.toString().trim();
+			String prediction = sb.toString().trim();
+			sb.setLength(0);
+
+			argsPrediction[1] = predictionConfig.lawCasePath;
+			Process lawCaseProc = Runtime.getRuntime().exec(argsPrediction);
+
+			BufferedReader r = new BufferedReader(new InputStreamReader(lawCaseProc.getInputStream(), "GBK"));
+			while ((temp = r.readLine()) != null) {
+				sb.append(temp + "\n");
+			}
+			lawCaseProc.waitFor();
+			r.close();
+
+			String res = prediction + "\n" + sb.toString().trim();
 
 			if (res != null) {
 				ResponseContent responseContent = new ResponseContent();
@@ -77,7 +90,7 @@ public class PredictionServiceImpl implements PredictionService {
 
 			return res;
 		} catch (IOException | InterruptedException e) {
-			log.error("Service: failed to execute python codes: {}", e.getCause());
+			log.error("Service: failed to execute python codes: {}", e.getCause().toString());
 			return null;
 		}
 	}

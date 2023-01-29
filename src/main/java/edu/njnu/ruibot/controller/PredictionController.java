@@ -26,7 +26,9 @@ public class PredictionController {
 		String desc = (String)params.get("description");
 		long userID = Long.valueOf(Integer.toString((int)params.get("user_id")));
 		String prediction = predictionService.prediction(desc, userID);
-		log.debug(prediction);
+		log.info("input:{}", desc);
+		log.info("output: {}", prediction);
+		log.info("=================================");
 		return Result.success(prediction);
 	}
 

@@ -21,6 +21,11 @@ logging:
   config: logback.xml
 
 prediction:
-  python-path: C:\Users\pc\Anaconda3\python.exe
-  code-path: F:\PycharmProjects\bert_server\predict2.py
+  # python-path: C:\Users\pc\Anaconda3\python.exe
+  python-path: C:\ProgramData\Anaconda3\envs\pytorch\python.exe
+  # prediction-path: F:\PycharmProjects\Prediction\law_test\law_test\bert_server\predict.py
+  prediction-path: C:\Users\Administrator\Desktop\Ruibot\Server\CoreCodes\Prediction\predict.py
+  # lawCase-path: F:\PycharmProjects\Prediction\crime_test\crime_test\bert_server\predict.py
+  lawCase-path: C:\Users\Administrator\Desktop\Ruibot\Server\CoreCodes\LawCase\predict.py
+  # code-path: F:\PycharmProjects\bert_server\predict2.py
   # code-path: F:\PycharmProjects\law_test\bert_server\predict2.py

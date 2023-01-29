@@ -9,6 +9,9 @@ public class PredictionConfig {
 	@Value("${prediction.python-path}")
 	public String pythonPath;
 
-	@Value("${prediction.code-path}")
-	public String codePath;
+	@Value("${prediction.prediction-path}")
+	public String predictionPath;
+
+	@Value("${prediction.lawCase-path}")
+	public String lawCasePath;
 }
